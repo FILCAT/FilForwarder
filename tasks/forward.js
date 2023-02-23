@@ -1,4 +1,5 @@
 const { Address } = require('@zondax/izari-tools');
+const fs = require('fs');
 
 /**
  * forward
@@ -14,7 +15,6 @@ const { Address } = require('@zondax/izari-tools');
  * The amount should be in FIL units, so "1.0" would be one Filecoin..
  */
 task("forward", "Use the default wallet to forward to a given address.")
-  .addParam('forwarder', 'The deployed contract address of the FilForwarder')
   .addParam('destination', 'The filecoin address you want to send FIL')
   .addParam('amount', 'The amount of FIL to send, in FIL units.')
   .setAction(async (taskArgs) => {
@@ -27,9 +27,15 @@ task("forward", "Use the default wallet to forward to a given address.")
   const destination = Address.fromString(taskArgs.destination);
   const wei = ethers.utils.parseEther(taskArgs.amount);
 
+  // read the forwarder address from the json, although they should
+  // all be the same (if deployed correctly)
+  var forwarderAddress = JSON.parse(
+    fs.readFileSync('fil-forwarder-' + network.config.chainId + '.json')
+  ).filForwarder;
+
   // generate the contract from the ABI so we can call it
   var filForwarder = (await ethers.getContractFactory('FilForwarder'))
-    .attach(taskArgs.forwarder);
+    .attach(forwarderAddress);
   
   // visibility is good
   console.log("Network Chain ID: " + network.config.chainId);

@@ -23,13 +23,6 @@ import { SendAPI } from "@zondax/filecoin-solidity/contracts/v0.8/SendAPI.sol";
  */
 contract FilForwarder {
     /**
-     * constructor
-     *
-     * This method will be called once upon deployment. It does nothing.
-     */
-    constructor() {}
-
-    /**
      * forward
      *
      * Designed mostly for EOAs, this method can be called to transfer FIL from the f410
