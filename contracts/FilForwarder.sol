@@ -44,7 +44,7 @@ contract FilForwarder {
      *
      * If you had an address as a string, say, "f01024", it would be encoded as bytes 0x00c10d.
      * You can find a typescript reference implementation of this conversion here:
-     * https://github.com/Zondax/filecoin-signing-tools/blob/master/signer-npm/js/src/utils.ts#L56
+     * https://github.com/Zondax/izari-tools 
      *
      * This method will revert if:
      *  - the actor address is clearly invalid (or the byte array is empty)
