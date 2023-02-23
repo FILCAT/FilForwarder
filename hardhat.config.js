@@ -15,6 +15,11 @@ module.exports = {
             url: "https://api.hyperspace.node.glif.io/rpc/v1",
             accounts: [PRIVATE_KEY],
         },
+        calibration: {
+            chainId: 314159,
+            url: 'https://api.calibration.node.glif.io/rpc/v1',
+            accounts: [PRIVATE_KEY],
+        }
     },
     paths: {
         sources: "./contracts",
