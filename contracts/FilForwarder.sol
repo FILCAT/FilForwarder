@@ -2,6 +2,8 @@
 pragma solidity 0.8.17;
 
 import { SendAPI } from "@zondax/filecoin-solidity/contracts/v0.8/SendAPI.sol";
+import { CommonTypes } from "@zondax/filecoin-solidity/contracts/v0.8/types/CommonTypes.sol";
+import { FilAddresses } from "@zondax/filecoin-solidity/contracts/v0.8/utils/FilAddresses.sol";
 
 /**
  * FilForwarder
@@ -22,6 +24,9 @@ import { SendAPI } from "@zondax/filecoin-solidity/contracts/v0.8/SendAPI.sol";
  * successfully and safely facilitate the transfer.
  */
 contract FilForwarder {
+    // Be able to treat fil addresses as native objects
+    using SendAPI for CommonTypes.FilAddress;
+
     /**
      * forward
      *
@@ -47,7 +52,8 @@ contract FilForwarder {
      *
      * @param destination the destination address in bytes format
      */
-    function forward(bytes calldata destination) public payable {
-        SendAPI.send(destination, msg.value);
+    function forward(bytes calldata destination) external payable {
+        CommonTypes.FilAddress memory target = FilAddresses.fromBytes(destination);
+        target.send(msg.value);
     }
 }
