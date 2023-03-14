@@ -52,7 +52,7 @@ If you use a .env file, don't commit and push any changes to .env files that may
 
 ### Running the Task
 
-The contract is deterministically deployed on all Filecoin networks at `0xAac40637A3590713f0588CF165E58f7A2c868d93`. Any contract claiming to be a FIL forwarder that does not reside at this address should not be trusted. Any dApp can connect to the wallet, and use the ABI in this repository to call this method via any frontend.
+The contract is deterministically deployed on all Filecoin networks at `0x2B3ef6906429b580b7b2080de5CA893BC282c225`. Any contract claiming to be a FIL forwarder that does not reside at this address should not be trusted. Any dApp can connect to the wallet, and use the ABI in this repository to call this method via any frontend.
 
 Inside of this repository is also a hardhat task called `forward`. This task will use the private key in your .env file in the directory to send funds using the contract. This task uses the `fil-forwarder-{CHAIN_ID}.json` file to determine the deployed contract address for a given network. These addresses should always be the same, but these files prevent you from having to specify it each time.
 
