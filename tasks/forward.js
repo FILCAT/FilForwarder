@@ -1,6 +1,24 @@
 const { Address } = require('@zondax/izari-tools');
 const fs = require('fs');
 
+const greenText  = '\x1b[32m%s\x1b[0m';
+task("show", "Show the state of the current genie deployment")
+  .setAction(async (taskArgs) => {
+    //create new Wallet object from private key
+    const owner = new ethers.Wallet(network.config.accounts[0], ethers.provider);
+    
+    const chainId = await owner.getChainId();
+    const balance = await owner.provider.getBalance(owner.address);
+    const gasPrice = await owner.provider.getGasPrice();
+
+    console.log(greenText, "\n=== SIGNER INFO ===\n");
+    console.log(" Signer Network Chain ID: " + chainId);
+    console.log(" Signer Wallet Address: " + owner.address);
+    console.log(" Signer Balance: " + ethers.utils.formatEther(balance));
+    console.log(greenText, "\n=== NETWORK CONDITIONS ===\n");
+    console.log( " Gas Price: " + ethers.utils.formatUnits(gasPrice, "gwei"));
+  });
+
 /**
  * forward
  * 

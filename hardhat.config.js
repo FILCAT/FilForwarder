@@ -27,6 +27,11 @@ module.exports = {
             chainId: 314159,
             url: 'https://api.calibration.node.glif.io/rpc/v1',
             accounts: [PRIVATE_KEY],
+        },
+        filecoin: {
+            chainId: 314,
+            url: 'https://api.node.glif.io',
+            accounts: [PRIVATE_KEY],
         }
     },
     paths: {
